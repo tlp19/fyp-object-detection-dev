@@ -6,7 +6,7 @@ import time
 
 # define a video capture object
 # cam = cv2.VideoCapture(0)
-cam = cv2.VideoCapture(0)
+cam = cv2.VideoCapture(2)
 cam.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
 cam.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 cam.set(cv2.CAP_PROP_FPS, 5)
@@ -14,10 +14,13 @@ cam.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 cam.set(cv2.CAP_PROP_AUTOFOCUS, 0)
 
 
-MODEL_PATH = "./models/model4-train0/model.tflite"     # MobileNetV2 (float)
+# MODEL_PATH = "./models/model4-train0/model.tflite"     # MobileNetV2 (float)
 # MODEL_PATH = "./models/model4-train1/model.tflite"     # MobileNetV2 (float)
+# MODEL_PATH = "./models/model4-train2/model.tflite"     # MobileNetV2 (float)
 
-CONFIDENCE_THRESHOLD = 0.20
+MODEL_PATH = "./models/final/MobileNetV2.tflite"
+
+CONFIDENCE_THRESHOLD = 0.50
 
 CLASS_LABELS = ["cauli", "other"]
 
@@ -32,7 +35,7 @@ input_dtype = input_details[0]['dtype']
 print("input shape:", input_shape)
 print("input type:", input_dtype)
 
-colors = np.random.uniform(0, 255, size=(len(CLASS_LABELS), 3))
+colors = np.array([[100,150,0], [0,150,200]])
 if input_dtype != np.uint8:
     colors = colors / 255.0
 

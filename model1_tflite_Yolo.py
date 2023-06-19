@@ -6,7 +6,7 @@ import time
 
 # define a video capture object
 # cam = cv2.VideoCapture(0)
-cam = cv2.VideoCapture(0)
+cam = cv2.VideoCapture(2)
 cam.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
 cam.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 cam.set(cv2.CAP_PROP_FPS, 5)
@@ -18,14 +18,17 @@ cam.set(cv2.CAP_PROP_AUTOFOCUS, 0)
 # MODEL_PATH = "./models/model1-train1/best_saved_model/best_float16.tflite"     # Broken
 # MODEL_PATH = "./models/model1-train4/best_float16.tflite"                      # Broken 
 # MODEL_PATH = "./models/model1-train5/best_float16.tflite"                      # Poor - 640
-MODEL_PATH = "./models/model1-train6/best_float16.tflite"                      # Okay - 320
+# MODEL_PATH = "./models/model1-train6/best_float16.tflite"                      # Okay - 320
+
+# MODEL_PATH = "./models/final/YOLOv8_320.tflite"
+MODEL_PATH = "./models/final/YOLOv8_640.tflite"
 
 CONFIDENCE_THRESHOLD = 0.2
 
 CLASS_LABELS = ["cauli", "other"]
 
 
-colors = np.random.uniform(0, 255, size=(len(CLASS_LABELS), 3)) / 255.0
+colors = colors = np.array([[100,150,0], [0,150,200]]) / 255.0
 
 # Load TFLite model and allocate tensors.
 interpreter = tflite.Interpreter(model_path=MODEL_PATH)
